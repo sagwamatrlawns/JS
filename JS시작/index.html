@@ -12,8 +12,18 @@
         <div>이름 : <input type="text" id="name"/></div>
         <div>지역 : 
             <select id="city">
-                <option value="02">서울</option>
+                <option value="02" selected>서울</option>
                 <option value="064">광주</option>
+            </select>
+        </div>
+        <div>동네 : 
+            <select id+"region_seoul">
+                <option value="">강남</option>
+                <option value="">서초</option>
+            </select>
+            <select id+"region_064" style="display:none">
+                <option value="">광주광역시</option>
+                <option value="">비아동</option>
             </select>
         </div>
         <button type="button" onclick="regist();">등록</button>
@@ -32,7 +42,11 @@
     
     <script>
         function regist(){
-            alert('click');
+            //alert(document.getElementById("name").value);
+            //alert(document.getElementById("city").value);
+            //document.getElementById("name").value;
+            alert($("#name").val());
+            alert($("#city").val());
         }
     </script>
 </body>
