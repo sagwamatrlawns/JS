@@ -11,19 +11,17 @@
     <div class="container">
         <div>이름 : <input type="text" id="name"/></div>
         <div>지역 : 
-            <select id="city">
-                <option value="02" selected>서울</option>
-                <option value="064">광주</option>
-            </select>
+            <select id="city" onchange="changeCity();"></select>
         </div>
         <div>동네 : 
-            <select id+"region_seoul">
+            <select id="region_02">
                 <option value="">강남</option>
                 <option value="">서초</option>
             </select>
-            <select id+"region_064" style="display:none">
-                <option value="">광주광역시</option>
-                <option value="">비아동</option>
+            <div>테스트 : <input type="text" id="test" value="" /></div>
+            <select id="region_064" style="display:none">
+                <option value="">제주시</option>
+                <option value="">서귀포시</option>
             </select>
         </div>
         <button type="button" onclick="regist();">등록</button>
@@ -41,13 +39,92 @@
     </script>
     
     <script>
-        function regist(){
+        function regist() {
+
+            
             //alert(document.getElementById("name").value);
             //alert(document.getElementById("city").value);
             //document.getElementById("name").value;
             alert($("#name").val());
             alert($("#city").val());
+
+            let obj = {};
+
+            obj.name = $('#name').val();
+            obj.city = $("#city").val();
+
+            printConsole(obj);
+            //printConsole2(name, city);
+
+            // document.getElementById("name").value;
         }
+
+        function loadCity() {
+            let city = [
+                {
+                    code:"02",
+                    name:"서울"
+                },
+                {
+                    code:"064",
+                    name:"제주"
+                }
+            ];
+
+            // append() : 컨텐츠를 선택된 요소 내부의 끝 부분에서 삽입
+            // perpend() : 콘텐츠를 선택한 요소 내부의 시작 부분에서 삽입
+            // after() : 선택한 요소 뒤에 컨텐츠 삽입
+            // before() : 선택된 요소 앞에 컨텐츠 삽입
+            for(let i = 0; i < city.length; i++){
+                if(i==0) $('#city').append('<option value="' + city[i].code + '" selected>' + city[i].name + '</option>');
+                else $('#city').append('<option value="' + city[i].code + '"' + city[i].name + '</option>');
+            }
+
+            //$('#city').append('<option value="02" selected>서울</option>');
+            //$('#city').append('<option value="064" selected>제주</option>');
+        }
+
+        loadCity();
+
+        function printConsole(data) {
+            console.log(data);
+        }
+
+        function printConsole2(name, city){
+            console.log(name);
+        }
+
+        function changeCity() {
+            //let city = document.getElementById("city").value;
+            //document.getElementById("region_02").style.display = "none";
+            //document.getElementById("region_064").style.display = "none";
+
+            //document.getElementById("region_" + city).style.display = "";
+
+            let city = $('#city').val();
+            $('#region_02').hide();
+            $('#region_064').hide();
+            $('#region_' + city).show();
+        }
+
+        // var, let, const : 변수선언
+        var x = 1;
+        x = x + 2;
+        document.getElementById("test").value = x;
+        // var은 동일한 변수명으로 사용하더라도 허용시켜준다.
+        // let는 동일한 변수명으로 선언 할 수 없다.
+        // const는 한번 할당한 값을 변경 할 수 없다.
+
+        // 자바스크립트는 int나 string처럼 다른 것을 선언해 줄필요없이 let로 통일하여 사용한다.
+        // 숫자, 소수점 숫자, 문자, 오브젝트, 배열, 참/거짓(boolean)
+        
+        // 오브젝트 : 서버같은 곳에 한번에 넘겨주기 위해서 사용한다.
+        // EX)
+        // let obj = {
+        //  name: "";
+        //  city: "";
+        //}
+
     </script>
 </body>
 </html>
